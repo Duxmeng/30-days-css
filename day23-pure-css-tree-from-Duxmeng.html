@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Duxmeng-170704-pure-css-tree</title>
+	</head>
+	<style type="text/css">
+	/***********22天作业我还没想好怎么写 所以先写后边的**************/
+		*{padding:0;margin:0;box-sizing: border-box;}
+		ul,li{list-style: none;}
+		a{text-decoration: none;color: #888;}
+		html,body{height: 100%;}
+		body {
+	      	color: #444;
+			font-size: 14px;
+	      	background: #d0d0d0;
+	      	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	    }
+	    .container{
+	    	width: 400px;
+	    	margin: 30px auto 0;
+	    }
+	    .title{
+	    	font-size: 32px;
+	    	text-align: center;
+	    	font-weight: normal;
+	    	margin-bottom: 30px;
+	    }
+	    .css-tree label{
+	    	width: 100%;
+	    	color: #888;
+	    	display: block;
+	    	position: relative;
+	    	padding: 10px 0 5px 15px;
+	    	border-bottom: 1px dashed #b0b9c5;
+	    }
+	    .css-tree [type="checkbox"]{display: none;}
+	    .label:before{
+	    	content: "";
+	    	width: 5px;
+	    	height: 5px;
+	    	border:1px solid #666;
+	    	position: absolute;
+	    	top: 15px;
+	    	left: 0;
+	    }
+	    .drop-menu,
+	    .drop-list{padding-left: 15px;}
+	    .drop-menu li a,
+	    .drop-list li a{padding-top: 10px;display: block;}
+	    .css-tree ul{display: none;}
+	    .css-tree [type="checkbox"]:checked + label {
+            color: #434a58;
+            border-bottom-color: #434a58;
+        }
+        .css-tree [type="checkbox"]:checked ~ ul{
+        	display: block;
+        }
+	</style>
+	<body>
+		<div class="container">
+			<h2 class="title">Pure <strong>CSS</strong> Tree</h2>
+			<ul class="css-tree">
+				<li>
+					<input type="checkbox" id="view">
+					<label for="view" class="label">view</label>
+					<ul class="drop-menu">
+						<li><a href="javascript:;">index.html</a></li>
+						<li>
+							<input type="checkbox" id="css">
+							<label for="css" class="label">css</label>
+							<ul class="drop-list">
+								<li><a href="javascript:;">css.css</a></li>
+							</ul>
+						</li>
+						<li>
+							<input type="checkbox" id="js">
+							<label for="js" class="label">js</label>
+							<ul class="drop-list">
+								<li><a href="javascript:;">js.js</a></li>
+								<li>
+									<input type="checkbox" id="jquery">
+									<label for="jquery" class="label">jquery</label>
+									<ul class="drop-list">
+										<li>
+											<input type="checkbox" id="version">
+											<label for="version" class="label">version</label>
+											<ul class="drop-list">
+												<li><a href="javascript:;">jquery.1.7</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
