@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Duxmeng-170710-login-animation-concept</title>
+	</head>
+	<script src="http://www.rmhb.com.cn/images/jquery-1.7.2.min.js"></script>
+    <style>
+    * {margin: 0;padding: 0;}
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box;
+    }
+    a{text-decoration: none;}
+    ul li {list-style: none;}
+    input{border: none;outline: none;}
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        font-family: "Microsoft yahei";
+    }
+    .bg-wrapper {
+        width: 100%;
+        height: 100%;
+        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/slider-2.jpg);
+        background-size: cover;
+        position: relative;
+    }
+    .login,
+    .logining {
+        position: absolute;
+        left: 50%;top: 50%;
+        transform: translate(-50%, -50%);
+        width: 360px;height: 636px;
+        background: -webkit- linear-gradient(to bottom, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+        background: linear-gradient(to bottom, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+        overflow: hidden;
+    }
+    .login-check {
+        position: absolute;
+        top: 20%;left: 50%;
+        width: 168px;height: 34px;
+        background: #fff;
+        transform: rotate(-45deg) translateX(-50%);
+    }
+    .login-check:after {
+        position: absolute;
+        display: block;
+        content: '';
+        background: #fff;
+        width: 34px;height: 62px;
+        left: 0;bottom: 100%;
+        box-shadow: inset -0.2rem -2rem 2rem rgba(0, 0, 0, 0.2);
+    }
+    .login-form {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        padding: 18px 30px;
+    }
+    .login-form input {
+        width: 100%;
+        height: 47px;
+        font-size: 20px;
+        color: #FDFCFD;
+        display: inline-block;
+        background: transparent;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .login-form input[type='checkbox'] {
+        position: absolute;
+        left: 0;bottom: 44px;
+        width: 100%;
+        height: 48px;
+        display: none;
+    }
+    label {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+    }
+    .login-button {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        height: 48px;
+        margin: 60px 0 26px;
+        color: rgba(255, 255, 255, 0.8);
+        background: #FF3366;
+        font-size: 18px;
+        border-radius: 24px;
+        cursor: pointer;
+        transition: all .3s;
+    }
+    .login-button:focus {outline: none;}
+    .login-button span {
+        display: inline-block;
+        line-height: 48px;
+    }
+    #login:checked + label {margin-left: 120px; }
+    #login:checked + label .login-button {
+        width: 48px;
+        height: 48px;
+        animation: change 3s 0.5s;
+        animation-fill-mode: forwards;
+    }
+    #login:checked + label .login-button span {display: none;}
+    .logining {display: none;}
+    .logining .login-button {
+        width: 48px;
+        height: 48px;
+        margin-left: 30px;
+    }
+    @keyframes change {
+        0% {
+            transform: scale(0) rotate(0);
+        }
+        100% {
+            transform: scale(120) rotate(900deg);
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="bg-wrapper">
+        <div class="login">
+            <div class="login-check">
+            </div>
+            <div class="login-form">
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
+                <input type="checkbox" id="login">
+                <label for="login">
+                    <a class="login-button"><span>Sign in</span></a>
+                </label>
+            </div>
+        </div>
+        <div class="logining">
+            <label for="login">
+                <a class="login-button"><span>Out</span></a>
+            </label>
+        </div>
+    </div>
+    <script>
+    $('.login label').click(function() {
+        $('.login').fadeOut(2000);
+        $('.logining').fadeIn(4000);
+    })
+    $('.logining label').click(function() {
+        $('.logining').fadeOut(1000);
+        $('.login').fadeIn(2000);
+    })
+    </script>
+</body>
+</html>
