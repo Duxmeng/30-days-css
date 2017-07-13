@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Duxmeng-170713-direction-aware-3D-hover-effect</title>
+		<style>
+			*{padding:0;margin:0;box-sizing: border-box;}
+        	ul,li{list-style: none;}
+			body {
+          		color: #333;
+                background: #f5f5f5;
+          		font-family: "Microsoft yahei";
+       		}
+			.wrap{
+				width: 740px;
+				padding: 10px;
+				margin: 30px auto 0;
+			}
+			.list{
+				height: auto;
+				background: #fff;
+				border: 1px solid #ccc;
+				width: 100%;
+			}
+			.list:after{
+				content: "";
+				clear: both;
+				display: table;
+			}
+			.list li{
+				float: left;
+				margin:10px;
+				cursor: pointer;
+				overflow: hidden;
+				position: relative;
+			}
+			.list li .img{float: left;border: 1px solid #ccc;}
+			.list li div{
+				color:#fff;
+				opacity: 0.8;
+				font-size:28px;
+				line-height:152px;
+				text-align:center;
+				position: absolute;
+				top:150px;
+				background:#F2528E;
+			}
+			.list .img,
+			.list div{
+				width: 218px;
+				height: 148px;
+			}
+		</style>
+</head>
+<body>
+<div class="wrap" >
+    <ul class="list">
+        <li><p class="img"></p><div>图片一</div></li>
+        <li><p class="img"></p><div>图片二</div></li>
+        <li><p class="img"></p><div>图片三</div></li>
+        <li><p class="img"></p><div>图片四</div></li>
+        <li><p class="img"></p><div>图片五</div></li>
+        <li><p class="img"></p><div>图片六</div></li>
+        <li><p class="img"></p><div>图片七</div></li>
+        <li><p class="img"></p><div>图片八</div></li>
+        <li><p class="img"></p><div>图片九</div></li>
+        <li><p class="img"></p><div>图片十</div></li>
+        <li><p class="img"></p><div>图片七</div></li>
+        <li><p class="img"></p><div>图片八</div></li>
+    </ul>
+</div>
+	<script src='http://www.rmhb.com.cn/images/jquery-1.7.2.min.js'></script>
+    <script>
+        var timer = null;
+        $('li').mouseenter(function(e) {
+            var oDiv = $(this).find('div');
+            oDiv.css({left: 0, top: 0});
+            var iDirection = mousemovedirection(this, e);
+            switch(iDirection) {
+                case 0 : oDiv.css('top', '-150px'); break;
+                case 1:  oDiv.css('left', '220px'); break;
+                case 2: oDiv.css('top', '150px'); break;
+                default: oDiv.css('left', '-220px')
+            }
+            timer = setTimeout(function() {
+                oDiv.animate({left: 0, top: 0}, 200)
+            }, 100)
+        }).mouseleave(function(e) {
+            clearTimeout(timer);
+            var oDiv = $(this).find('div');
+            var iDirection = mousemovedirection(this, e);
+            switch(iDirection) {
+                case 0 : oDiv.animate({top: -150}, 200); break;
+                case 1: oDiv.animate({left: 220}, 200); break;
+                case 2: oDiv.animate({top: 150}, 200); break;
+                default: oDiv.animate({left: -220}, 200)
+            }
+        });
+        function mousemovedirection(o, e) {
+             var w = o.offsetWidth;
+             var h = o.offsetHeight;
+             var x = (e.pageX - o.offsetLeft - (w/2)) * (w > h ? (h/w) : 1);
+             var y = (e.pageY - o.offsetTop - (h/2)) * (h > w ? (w/h) : 1);
+             var direction = Math.round((((Math.atan2(y, x) * (180/Math.PI)) + 180) / 90) + 3) % 4;
+             var evenType = e.type;
+             return direction;
+        }
+</script>
+</body>
