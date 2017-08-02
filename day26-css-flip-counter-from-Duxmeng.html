@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Duxmeng-170802-css-flip-counter</title>
+    <script src="http://www.coolfe.com/jquery.js"></script>
+    <style>
+    * {margin: 0;padding: 0;}
+    *,
+    *:before,
+    *:after {box-sizing: border-box;}
+    ul li {list-style: none;}
+    html,
+    body {width: 100%;height: 100%;font-family: Arial;}
+    .counter-wrapper {
+        width: 100%;
+        height: 100%;
+        background: #f5f5f5;
+    }
+    .counter-wrapper ul {
+        text-align: center;
+        padding-top: 50px;
+    }
+    .counter-wrapper li {
+        display: inline-block;
+        position: relative;
+        width: 60px;
+        height: 90px;
+        background: #dadada;
+        zoom: 1;
+        z-index: 1;
+    }
+    .counter-wrapper li:after {
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+    }
+    .counter-wrapper label {display: block;}
+    .counter-wrapper .top,
+    .counter-wrapper .bottom {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        overflow: hidden;
+        font-size: 75px;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 700;
+    }
+    .counter-wrapper .bottom {
+        bottom: -2px;
+        line-height: 0;
+        z-index: 10;
+        background: #dadada;
+    }
+    .counter-wrapper .top {top: 0;}
+    .counter-wrapper .hinge {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform-style: preserve-3d;
+    }
+    .counter-wrapper .hinge .top,
+    .counter-wrapper .hinge .bottom {
+        height: 0;
+        z-index: 5;
+        line-height: 0;
+        background: #dadada;
+        transform-origin: 0px 45px;
+        transform: rotateX(0deg);
+    }
+    .counter-wrapper .hinge .top {
+        padding-top: 45px;
+        z-index: 5;
+    }
+    .counter-wrapper .hinge .bottom {height: 45px;}
+    .counter-wrapper .ani .before,
+    .counter-wrapper .ani .back {
+        animation: run 1s infinite;
+    }
+    @keyframes run {
+        from {
+            transform: rotateX(0);
+        }
+        to {
+            transform: rotateX(90deg);
+        }
+    }
+    </style>
+    <script>
+    $('document').ready(function() {
+        num = parseInt($('.hinge .top').text());
+        function add() {
+            num++;
+            if (num > 9) {
+                num = 0;
+            }
+            $('.unbefore,.unback').text(num);
+            $('.hinge .top,.hinge .bottom').text(num);
+        }
+        $('.time li').addClass('ani');
+        var time = setInterval(add, 1000);
+    })
+    </script>
+</head>
+
+<body>
+    <div class="counter-wrapper">
+        <ul class="time">
+            <li class="h">
+                <div class="top unbefore">0</div>
+                <div class="bottom unback">0</div>
+                <div class="hinge">
+                    <div class="top before">0</div>
+                    <div class="bottom back">0</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
